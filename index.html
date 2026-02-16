@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITs Inc</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+</head> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITs Inc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.46/build/spline-viewer.js"></script>
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+</script>
+
+
+</head>
+
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#C8102E] selection:text-white overflow-x-hidden">
+
+    <div id="preloader"
+        class="fixed inset-0 z-[99999] bg-[#050505] flex flex-col items-center justify-center transition-transform duration-1000 cubic-bezier(0.76, 0, 0.24, 1)">
+
+        <div class="overflow-hidden mb-8">
+            <h1 id="loader-text"
+                class="text-4xl md:text-6xl font-extrabold text-white tracking-tighter translate-y-full transition-transform duration-700">
+                KRISINTEK<span class="text-[#C8102E]">.</span>
+            </h1>
+        </div>
+
+        <div class="w-64 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+            <div id="loader-bar" class="absolute top-0 left-0 h-full w-0 bg-[#C8102E]"></div>
+        </div>
+
+        <div class="mt-4 overflow-hidden h-6">
+            <div id="loader-counter" class="text-[#C8102E] font-mono text-sm font-bold">0%</div>
+        </div>
+    </div>
+
+    <div class="fixed inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
+        style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+
+    <header id="navbar" class="fixed top-0 w-full z-[100] transition-all duration-500 border-b border-transparent">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-24 transition-all duration-300" id="nav-inner">
+
+                <div class="flex-shrink-0 cursor-pointer group z-[101]">
+                    <div class="relative w-48 md:w-64 h-20 flex items-center justify-start">
+                        <img src="assets/KITShomelogo3.png" id="logo-home" alt="KITS Logo"
+                            class="absolute left-0 top-0 w-full h-full object-contain transition-opacity duration-500 opacity-100">
+
+                        <img src="assets/KITSothersectionlogo.png" id="logo-scroll" alt="KITS Logo Dark"
+                            class="absolute left-0 top-0 w-full h-full object-contain transition-opacity duration-500 opacity-0">
+                    </div>
+                </div>
+
+                <div id="nav-container"
+                    class="hidden xl:flex items-center p-1.5 rounded-full transition-all duration-300">
+                    <a href="#home"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">Home</a>
+                    <a href="#about"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">About</a>
+                    <a href="#services"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">Services</a>
+                    <a href="#clients"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">Clients</a>
+                    <a href="#careers"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">Careers</a>
+                    <a href="#contact"
+                        class="nav-item text-[11px] font-bold tracking-widest uppercase text-slate-600 hover:text-black px-6 py-3 rounded-full transition-all duration-300">Contact</a>
+                </div>
+
+                <div class="xl:hidden flex items-center z-[101]">
+                    <button id="mobile-menu-btn"
+                        class="p-2 text-slate-900 hover:text-[#C8102E] transition-colors focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- <div id="mobile-menu"
+            class="fixed inset-0 bg-white/95 backdrop-blur-xl z-[90] translate-x-full transition-transform duration-500 ease-in-out xl:hidden flex flex-col items-center justify-center space-y-8">
+            <button id="close-mobile-menu"
+                class="absolute top-8 right-6 p-2 text-slate-900 hover:text-[#C8102E] transition-colors">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <a href="#home"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Home</a>
+            <a href="#about"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">About</a>
+            <a href="#services"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Services</a>
+            <a href="#clients"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Clients</a>
+            <a href="#careers"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Careers</a>
+            <a href="#contact"
+                class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Contact</a>
+        </div> -->
+    </header>
+
+    <main class="relative z-10">
+        <section id="home" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#0a0a0a]">
+
+            <div id="hero-bg-wrapper" class="absolute inset-0 z-0 overflow-hidden">
+                <img src="assets/1111.png" id="hero-img"
+                    class="w-full h-full object-cover opacity-60 scale-105 transition-transform duration-[2s]"
+                    alt="Background">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#0a0a0a]"></div>
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-20">
+
+                <div class="text-left mt-10 lg:mt-0">
+                    <div
+                        class="reveal-fade inline-flex items-center gap-2 px-4 py-2 mb-6 text-[10px] font-bold tracking-[0.3em] text-[#C8102E] uppercase bg-red-500/5 border border-red-500/20 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#C8102E] animate-pulse"></span>
+                        System Status: Online
+                    </div>
+
+                    <h1
+                        class="reveal-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 tracking-tighter leading-[0.9]">
+                        Global <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">Intelligence.</span>
+                    </h1>
+
+                    <p
+                        class="reveal-fade delay-100 max-w-xl text-base md:text-lg text-gray-400 mb-10 leading-relaxed font-light">
+                        Your partner in digital transformation. <b>Secure systems, intelligent AI solutions, and the
+                            right talent to build the future.</b>
+                        <b>Technology that works. Service you can trust.</b>
+                    </p>
+
+                    <div class="reveal-fade delay-200 flex flex-wrap gap-4">
+                        <a href="#services"
+                            class="group relative px-8 py-4 bg-[#C8102E] text-white rounded-full font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(200,16,46,0.5)]">
+                            <span class="relative text-[11px] tracking-widest uppercase flex items-center gap-2">
+                                Initialize Protocol
+                                <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="#about"
+                            class="px-8 py-4 bg-white/5 text-white border border-white/10 rounded-full font-bold hover:bg-white hover:text-black transition-all uppercase text-[11px] tracking-widest hover:scale-105 backdrop-blur-sm">
+                            View Source
+                        </a>
+                    </div>
+                </div>
+
+                <!-- console or terminal -->
+                <!-- <div class="reveal-slide-left relative w-full max-w-lg mx-auto lg:mr-0 mt-8 lg:mt-0">
+                    <div
+                        class="bg-[#0f0f0f]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-white/5 px-4 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                                info@krisintek.com:~</div>
+                        </div>
+
+                        <div class="p-6 font-mono text-xs md:text-sm h-[250px] md:h-[320px] overflow-hidden relative">
+                            <div id="terminal-content" class="space-y-2"></div>
+                            <span class="inline-block w-2 h-4 bg-[#C8102E] animate-pulse ml-1 align-middle"></span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute -top-10 -right-10 w-24 h-24 border-t-2 border-r-2 border-[#C8102E]/20 rounded-tr-3xl -z-10 hidden md:block">
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -left-10 w-24 h-24 border-b-2 border-l-2 border-white/10 rounded-bl-3xl -z-10 hidden md:block">
+                    </div>
+                </div> -->
+
+
+                <!--splin bob animation-->
+                <!-- <div
+                    class="reveal-slide-left relative w-full lg:w-[600px] mx-auto mt-8 lg:mt-0 h-[450px] md:h-[600px] md:-mt-20 flex items-center justify-center">
+
+                    <div class="absolute inset-0 z-20 w-full h-full cursor-default"></div>
+
+                    <spline-viewer url="https://prod.spline.design/3Pu2lgCbPReMQ8FI/scene.splinecode"
+                        events-target="global" loading-anim-type="spinner"
+                        class="w-full h-full scale-125 drop-shadow-2xl relative z-10">
+                    </spline-viewer>
+
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#C8102E] rounded-full blur-[100px] -z-10 opacity-20 animate-pulse pointer-events-none">
+                    </div>
+
+                </div> -->
+                <div id="eve-container" style="width: 100%; height: 600px; position: relative;">
+                    <canvas id="eve-canvas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="about"
+            class="relative py-20 md:py-32 bg-white rounded-t-[3rem] -mt-10 z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.1)]">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+                <div class="reveal-slide-right">
+                    <span class="text-[#C8102E] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Who We
+                        Are</span>
+
+                    <h2 class="text-4xl md:text-7xl font-extrabold text-slate-900 mb-8 tracking-tighter leading-tight">
+                        Digital <br><span class="text-slate-300 italic">Excellence.</span>
+                    </h2>
+
+                    <p class="text-base md:text-lg text-slate-600 mb-8 leading-relaxed text-justify">
+                        Our services are designed to support enterprises at every stage of their digital journey.
+                        Through expert IT consulting, professional services, and workforce solutions, we help
+                        organizations modernize operations, strengthen security, and unlock innovation with confidence.
+                    </p>
+
+                    <div class="inline-block group cursor-default transition-all duration-500 hover:-translate-y-2">
+                        <div class="flex items-center gap-4">
+                            <span
+                                class="text-6xl md:text-8xl font-black tracking-tighter text-[#C8102E] transition-transform duration-500 group-hover:scale-110">
+                                10+
+                            </span>
+
+                            <div
+                                class="text-left border-l-4 border-[#C8102E] pl-4 transition-colors duration-500 group-hover:border-slate-900">
+                                <span
+                                    class="block text-sm font-bold uppercase tracking-[0.2em] text-[#C8102E] opacity-70">Years
+                                    of</span>
+                                <span
+                                    class="block text-2xl md:text-3xl font-black uppercase text-[#C8102E] leading-none tracking-tight">Service</span>
+                            </div>
+                        </div>
+
+                        <div class="h-1 w-0 bg-[#C8102E] mt-2 transition-all duration-500 group-hover:w-full"></div>
+                    </div>
+
+                </div>
+
+                <div class="reveal-slide-left relative h-[400px] md:h-[600px] w-full">
+                    <div class="absolute top-0 right-0 w-3/4 h-3/4 rounded-[2rem] overflow-hidden shadow-2xl z-10 parallax-img"
+                        data-speed="0.05">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-2/3 h-2/3 rounded-[2rem] overflow-hidden shadow-2xl z-20 border-4 md:border-8 border-white parallax-img"
+                        data-speed="0.1">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-[#C8102E]/10 mix-blend-multiply"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+                <div
+                    class="p-8 md:p-10 bg-slate-900 border border-slate-800 rounded-[2.5rem] hover:shadow-2xl hover:shadow-[#C8102E]/20 transition-all duration-300 group">
+                    <div
+                        class="mb-6 bg-white/10 w-14 h-14 rounded-full flex items-center justify-center shadow-sm backdrop-blur-sm group-hover:bg-[#C8102E] transition-colors duration-300">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Core Functionality</h4>
+                    <p class="text-slate-400 leading-relaxed text-justify hyphens-auto text-sm font-light">
+                        Krisintek focuses on building strong technology foundations that support business goals. We
+                        deliver end-to-end IT consulting, management services, and system integration that ensure
+                        reliability, performance, and scalability across enterprise environments.
+                    </p>
+                </div>
+
+                <div
+                    class="p-8 md:p-10 bg-slate-900 border border-slate-800 rounded-[2.5rem] hover:shadow-2xl hover:shadow-[#C8102E]/20 transition-all duration-300 group">
+                    <div
+                        class="mb-6 bg-white/10 w-14 h-14 rounded-full flex items-center justify-center shadow-sm backdrop-blur-sm group-hover:bg-[#C8102E] transition-colors duration-300">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Knowledge Base</h4>
+                    <p class="text-slate-400 leading-relaxed text-justify hyphens-auto text-sm font-light">
+                        Our consultants are highly trained professionals with strong backgrounds in technology,
+                        business, and project management processes, ensuring deep domain expertise in every engagement.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="relative bg-slate-50 py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-20">
+                <span
+                    class="text-[#C8102E] font-bold tracking-[0.3em] uppercase text-[10px] block mb-4">Ecosystem</span>
+                <h2 class="text-4xl md:text-8xl font-extrabold text-slate-900 tracking-tighter">Our <span
+                        class="text-slate-300">Expertise.</span></h2>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 md:px-6 space-y-24 pb-32">
+
+                <div
+                    class="service-card sticky top-20 bg-white rounded-[2.5rem] p-6 md:p-16 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-red-50 text-[#C8102E] rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-slate-900">
+                            Professional Services</h3>
+                        <p class="text-sm md:text-base text-slate-500 leading-relaxed mb-8">
+                            Technology fails without strategy. We provide <b>IT Staffing</b> and <b>Business
+                                Analysis</b> required to navigate complex digital transformations.
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                IT Strategy</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                Agile</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-[#C8102E]">
+                                PMOaaS</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+                <!-- <div
+                    class="service-card sticky top-24 bg-[#0a0a0a] text-white rounded-[2.5rem] p-6 md:p-16 shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-6 md:mb-8 backdrop-blur-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-[#C8102E]">AI & Cyber
+                            Workforce</h3>
+                        <p class="text-sm md:text-base text-slate-400 leading-relaxed mb-8">
+                            We specialize in headhunting niche talent for high-stakes domains. From <b>PhD-level Neural
+                                Network Researchers</b> to <b>Red Team Cryptographers</b>.
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-white/10 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Prompt Eng</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-white/10 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Threat Hunters</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-white/10 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                ML Ops</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div> -->
+
+                <div
+                    class="service-card sticky top-28 bg-[#C8102E] text-white rounded-[2.5rem] p-6 md:p-16 shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-black/20 text-white rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight">Cloud Engineering</h3>
+                        <p class="text-sm md:text-base text-white/90 leading-relaxed mb-8">
+                            We build the backbone for intelligent systems. Our engineers design <b>Serverless
+                                Architectures</b> capable of handling real-time LLM inference.
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-black/20 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Kubernetes</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-black/20 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Microservices</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-black/20 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Edge</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto bg-black/20">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+                <div
+                    class="service-card sticky top-32 bg-white rounded-[2.5rem] p-6 md:p-16 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-red-50 text-[#C8102E] rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-slate-900">Autonomous
+                            Enterprise</h3>
+                        <p class="text-sm md:text-base text-slate-500 leading-relaxed mb-8">
+                            We implement <b>Hyperautomation</b> and <b>Process Mining</b> to create self-optimizing
+                            business workflows.
+                            <br>
+                            <br>
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                RPA</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                Predictive</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-[#C8102E]">
+                                ERP</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+                <div
+                    class="service-card sticky top-36 bg-[#0a0a0a] text-white rounded-[2.5rem] p-6 md:p-16 shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-6 md:mb-8 backdrop-blur-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-[#C8102E]">Cognitive
+                            AI & GenAI</h3>
+                        <p class="text-sm md:text-base text-slate-400 leading-relaxed mb-8">
+                            We engineer autonomous intelligent systems using <b>Agentic AI</b> and <b>Multimodal
+                                LLMs</b>.
+                            <br>
+                            <br>
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-white/10 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                NLP</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-white/10 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Computer Vision</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+                <div
+                    class="service-card sticky top-40 bg-[#C8102E] text-white rounded-[2.5rem] p-6 md:p-16 shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-black/20 text-white rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight">AI-Native Quality</h3>
+                        <p class="text-white/90 leading-relaxed mb-8 text-sm md:text-base">
+                            Traditional testing isn't enough. We utilize <b>AI-Driven Test Automation</b> to generate
+                            synthetic test data.
+                            <br>
+                            <br>
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-black/20 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Synthetic Data</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-black/20 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-white">
+                                Self-Healing</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto bg-black/20">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+                <div
+                    class="service-card sticky top-44 bg-white rounded-[2.5rem] p-6 md:p-16 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-8 md:gap-12 group transition-transform duration-500">
+                    <div class="md:w-1/2 flex flex-col justify-center">
+                        <div
+                            class="w-14 h-14 bg-red-50 text-[#C8102E] rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-slate-900">Advanced
+                            Cyber Defense</h3>
+                        <p class="text-sm md:text-base text-slate-500 leading-relaxed mb-8">
+                            Secure your perimeter with <b>Zero Trust Architecture</b> and AI-driven <b>XDR</b>
+                            protocols.
+                        </p>
+                        <ul class="flex gap-2 md:gap-3 flex-wrap">
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                Zero Trust</li>
+                            <li
+                                class="px-3 md:px-4 py-2 bg-slate-100 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide text-slate-700">
+                                DevSecOps</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 relative overflow-hidden rounded-2xl h-[200px] md:h-auto">
+                        <img src="https://images.unsplash.com/photo-1632910121591-29e2484c0259?q=80&w=1331&auto=format&fit=crop"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="clients" class="py-24 bg-white overflow-hidden border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-20">
+                <span class="text-[#C8102E] font-bold tracking-[0.3em] uppercase text-[10px] block mb-4">Our
+                    Reach</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tighter">Industries We <span
+                        class="text-slate-300">Empower.</span></h2>
+            </div>
+
+            <div class="relative flex overflow-x-hidden mb-12 md:mb-32">
+                <div
+                    class="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-24 pr-12 md:pr-24 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Manufacturing</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Finance</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Healthcare</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Automotive</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Technology</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Retail</span>
+                </div>
+                <div
+                    class="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-12 md:gap-24 pr-12 md:pr-24 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Manufacturing</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Finance</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Healthcare</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Automotive</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Technology</span>
+                    <span
+                        class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-black to-slate-400 uppercase tracking-tighter">Retail</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="testimonials" class="py-20 md:py-32 bg-slate-50 overflow-hidden border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+                <div class="text-center mb-16 md:mb-20">
+                    <h2 class="text-4xl md:text-7xl font-extrabold text-[#C8102E] tracking-tighter">TESTIMONIALS</h2>
+                </div>
+
+                <div class="swiper mySwiper w-full !pb-12 !px-0 overflow-visible">
+                    <div class="swiper-wrapper">
+                        <div
+                            class="swiper-slide w-[90vw] md:w-auto bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl flex flex-col items-center text-center max-w-[320px] md:max-w-[600px] h-auto cursor-grab active:cursor-grabbing">
+                            <div
+                                class="w-16 h-16 md:w-20 md:h-20 bg-red-50 rounded-full flex items-center justify-center mb-8 text-[#C8102E]">
+                                <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <circle cx="7" cy="17" r="2"></circle>
+                                    <circle cx="17" cy="17" r="2"></circle>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 17H3v-4c0-1.1.9-2 2-2h1.5l2-4h7l2 4H19c1.1 0 2 .9 2 2v4h-2m-4 0h-6">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-white text-base md:text-xl leading-relaxed mb-8 font-medium italic">
+                                "Krisintek transformed our hiring pipeline. Their ability to find niche talent in the
+                                automotive sector saved us months of delay."
+                            </p>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white">Automotive Partner</h4>
+                            </div>
+                        </div>
+
+                        <div
+                            class="swiper-slide w-[90vw] md:w-auto bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl flex flex-col items-center text-center max-w-[320px] md:max-w-[600px] h-auto cursor-grab active:cursor-grabbing">
+                            <div
+                                class="w-16 h-16 md:w-20 md:h-20 bg-red-50 rounded-full flex items-center justify-center mb-8 text-[#C8102E]">
+                                <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-white text-base md:text-xl leading-relaxed mb-8 font-medium italic">
+                                "Exceptional service. They provided a full team of Java engineers who integrated
+                                seamlessly with our on-site staff."
+                            </p>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white">Finance Client</h4>
+                            </div>
+                        </div>
+
+                        <div
+                            class="swiper-slide w-[90vw] md:w-auto bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl flex flex-col items-center text-center max-w-[320px] md:max-w-[600px] h-auto cursor-grab active:cursor-grabbing">
+                            <div
+                                class="w-16 h-16 md:w-20 md:h-20 bg-red-50 rounded-full flex items-center justify-center mb-8 text-[#C8102E]">
+                                <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-white text-base md:text-xl leading-relaxed mb-8 font-medium italic">
+                                "The quality assurance testing protocols they implemented reduced our bug rate by 60%
+                                within the first quarter."
+                            </p>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white">Tech Partner</h4>
+                            </div>
+                        </div>
+
+                        <div
+                            class="swiper-slide w-[90vw] md:w-auto bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl flex flex-col items-center text-center max-w-[320px] md:max-w-[600px] h-auto cursor-grab active:cursor-grabbing">
+                            <div
+                                class="w-16 h-16 md:w-20 md:h-20 bg-red-50 rounded-full flex items-center justify-center mb-8 text-[#C8102E]">
+                                <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-white text-base md:text-xl leading-relaxed mb-8 font-medium italic">
+                                "Professional, reliable, and incredibly fast. They understood our requirements perfectly
+                                and delivered candidates within 48 hours."
+                            </p>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white">Health Client</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination mt-10 !relative !bottom-0 flex justify-center w-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="careers" class="relative py-20 md:py-32 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="mb-12 md:mb-20">
+                    <span class="text-[#C8102E] font-bold tracking-[0.3em] uppercase text-[10px] block mb-4">Join the
+                        Frontier</span>
+                    <h2 class="text-4xl md:text-7xl font-extrabold text-gray-900 tracking-tighter">Build the <span
+                            class="text-gray-400">Future.</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+                    <div
+                        class="md:col-span-2 bg-gray-900 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group transition-all duration-500 hover:shadow-2xl min-h-[300px]">
+                        <div class="relative z-10 flex flex-col justify-between h-full">
+                            <div>
+                                <div
+                                    class="inline-block px-4 py-1.5 border border-white/20 rounded-full text-white text-[10px] font-bold tracking-widest uppercase mb-6">
+                                    Our Philosophy</div>
+                                <h3 class="text-2xl md:text-4xl text-white font-bold leading-tight">Where ambition meets
+                                    <br><span class="text-[#C8102E]">precision engineering.</span>
+                                </h3>
+                            </div>
+                            <p class="text-gray-400 max-w-md text-sm leading-relaxed mt-4 md:mt-0">
+                                We don’t just fill positions—we build teams that build the future.
+                                Join a workforce of employees defined by rigorous technical standards and continuous
+                                evolution.
+                            </p>
+                        </div>
+                        <div
+                            class="absolute right-0 top-0 w-64 h-64 bg-[#C8102E] rounded-full blur-[100px] opacity-20 group-hover:opacity-30 transition-opacity">
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-[#C8102E] rounded-[2.5rem] p-8 text-white flex flex-col justify-center items-center text-center group hover:scale-[1.02] transition-transform min-h-[250px]">
+                        <a href="#contact">
+                            <div class="mb-4 bg-white/20 p-4 rounded-full">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="#contact">
+                            <h4 class="text-2xl font-bold mb-2">Fast-Track Growth</h4>
+                            <p class="text-xs text-white/80">Mentorship from industry veterans.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="relative bg-[#050505] text-white pt-24 md:pt-32 pb-12 overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.08] pointer-events-none animate-pulse-slow">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                <div>
+                    <h2 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[0.9]">
+                        Let's Talk <br> <span class="text-[#C8102E]">Business.</span>
+                    </h2>
+                    <div class="space-y-2 text-lg text-gray-500">
+                        <p>13800 Coppermine Rd, Suite #200</p>
+                        <p>Herndon, VA-20171 • USA</p>
+                        <p class="text-gray-500 hover:text-[#C8102E] transition-colors">Phone : <a
+                                href="tel:7033482223">+1 (703) 348 2223</a></p>
+                        <p class="text-gray-500 hover:text-[#C8102E] transition-colors">Fax : <a
+                                href="fax:703 348 2225">703 348 2225</a></p>
+                        <a href="mailto:info@krisintek.com"
+                            class="block text-white hover:text-[#C8102E] transition-colors mt-4">info@krisintek.com</a>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-10 rounded-[2rem]">
+                    <form class="space-y-6" onsubmit="event.preventDefault();">
+                        <input id="contact-name" type="text" placeholder="Subject / Name" required
+                            class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#C8102E] transition-colors">
+                        <textarea id="contact-message" placeholder="Type your message here..." rows="2" required
+                            class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#C8102E] transition-colors resize-none"></textarea>
+                        <button type="button" onclick="sendToGmail()"
+                            class="block w-full text-center py-4 bg-white text-black font-bold uppercase tracking-widest rounded-xl hover:bg-[#C8102E] hover:text-white transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="mt-24 md:mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                <p>© 2017 Krisintek Inc.</p>
+                <div class="flex gap-8 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ai-widget" class="fixed bottom-4 right-4 z-[9999] font-sans flex flex-col items-end pointer-events-none">
+
+        <div id="chat-window"
+            class="pointer-events-auto w-[90vw] sm:w-[360px] h-[500px] bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col border border-white/20 transition-all duration-300 origin-bottom-right opacity-0 scale-90 translate-y-10 invisible mb-4">
+
+            <div class="bg-slate-900 p-6 flex items-center justify-between relative overflow-hidden shrink-0">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[#C8102E] rounded-full blur-[60px] opacity-20 pointer-events-none">
+                </div>
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center border border-white/10">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full">
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-bold tracking-wide">Krisintek Assistant</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">Online</p>
+                    </div>
+                </div>
+                <button id="close-chat"
+                    class="relative z-10 p-2 text-white/50 hover:text-white transition-colors hover:bg-white/10 rounded-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="chat-messages" class="flex-1 bg-slate-50/50 p-5 overflow-y-auto space-y-4 scroll-smooth">
+                <div class="flex items-start gap-3 animate-fade-in-up">
+                    <div
+                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center shrink-0 text-slate-600 font-bold text-[10px]">
+                        AI</div>
+                    <div
+                        class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm text-sm text-slate-600 border border-slate-100 leading-relaxed">
+                        Hello! I can help you with staffing solutions, engineering services, or career opportunities.
+                        How can I assist you?
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t border-slate-100 shrink-0">
+                <form id="chat-form" class="relative flex items-center gap-2">
+                    <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off"
+                        class="w-full bg-slate-50 text-slate-900 placeholder-slate-400 text-sm rounded-full pl-5 pr-12 py-3.5 border border-slate-200 focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] transition-all shadow-inner">
+
+                    <button type="submit"
+                        class="absolute right-2 p-2 bg-[#C8102E] text-white rounded-full hover:bg-black transition-colors shadow-lg transform active:scale-95 group">
+                        <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </form>
+                <div class="text-center mt-2">
+                    <p class="text-[9px] text-gray-300 font-medium">Powered by Krisintek AI</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="chat-toggle"
+            class="pointer-events-auto w-12 h-12 md:w-14 md:h-14 bg-black rounded-full shadow-2xl flex items-center justify-center text-white hover:bg-[#C8102E] transition-all duration-300 hover:scale-110">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+
+
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white/95 backdrop-blur-xl z-[9999] translate-x-full transition-transform duration-500 ease-in-out xl:hidden flex flex-col items-center justify-center space-y-8 top-0 right-0 w-full h-full">
+
+        <button id="close-mobile-menu"
+            class="absolute top-8 right-6 p-2 text-slate-900 hover:text-[#C8102E] transition-colors focus:outline-none">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <a href="#home"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Home</a>
+        <a href="#about"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">About</a>
+        <a href="#services"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Services</a>
+        <a href="#clients"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Clients</a>
+        <a href="#careers"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Careers</a>
+        <a href="#contact"
+            class="mobile-link text-3xl font-bold text-slate-900 hover:text-[#C8102E] transition-colors">Contact</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+
+    <script>
+        // DIRECT MENU TOGGLE SCRIPT
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileBtn = document.getElementById('close-mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                // Toggle the translation class to slide in/out
+                mobileMenu.classList.toggle('translate-x-full');
+
+                // Toggle body scroll lock
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    document.body.style.overflow = '';
+                } else {
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            // Attach Click Listeners
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent bubbling
+                    toggleMenu();
+                });
+            }
+
+            if (closeMobileBtn) {
+                closeMobileBtn.addEventListener('click', () => {
+                    toggleMenu();
+                });
+            }
+
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('translate-x-full')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Close menu when clicking outside (optional safety)
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('translate-x-full')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
